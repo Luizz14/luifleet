@@ -1,11 +1,14 @@
-import { Container, Slogan, Title } from './styles'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
+import { Alert } from 'react-native'
+import { useState } from 'react'
+
+import { Realm, useApp } from '@realm/react'
+
+import { Container, Slogan, Title } from './styles'
 
 import backgroundImg from '../../assets/background.png'
 import { Button } from '../../components/Button'
 import { IOS_CLIENT_ID, WEB_CLIENT_ID } from '@env'
-import { useState } from 'react'
-import { Alert } from 'react-native'
 
 GoogleSignin.configure({
   scopes: ['email', 'profile'],
@@ -16,6 +19,8 @@ GoogleSignin.configure({
 export function SignIn() {
   const [isAuthenticating, setIsAuthenticating] = useState(false)
 
+  const app = useApp()
+
   async function handleGoogleSignIn() {
     try {
       setIsAuthenticating(true)
@@ -23,8 +28,11 @@ export function SignIn() {
       const { idToken } = await GoogleSignin.signIn()
 
       if (idToken) {
+        const credential = Realm.Credentials.jwt(idToken)
+
+        await app.logIn(credential)
       } else {
-        Alert.alert('Error!', 'Não foi possível entrar na sua conta google')
+        throw new Error()
       }
     } catch (error) {
       Alert.alert('Error!', 'Não foi possível entrar na sua conta google')
