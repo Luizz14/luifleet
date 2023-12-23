@@ -1,4 +1,7 @@
+import { Alert } from 'react-native'
 import { useRef, useState } from 'react'
+
+import { Historic } from '../../libs/realm/schemas/Historic'
 
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
@@ -12,7 +15,8 @@ import {
   TextInput,
 } from 'react-native'
 import { licensePlateValidade } from '../../utils/licensePlateValidate'
-import { Alert } from 'react-native'
+import { useRealm, useUser } from '@realm/react'
+import { useNavigation } from '@react-navigation/native'
 
 const KeyboardAvoidingViewBehavior =
   Platform.OS === 'android' ? 'height' : 'position'
@@ -20,16 +24,59 @@ const KeyboardAvoidingViewBehavior =
 export function Departure() {
   const [description, setDescription] = useState('')
   const [licensePlate, setLicensePlate] = useState('')
+  const [isRegistering, setIsRegistering] = useState(false)
 
-  const descriptionInput = useRef<TextInput>(null)
-  const licensePlateInput = useRef<TextInput>(null)
+  const { goBack } = useNavigation()
+  const realm = useRealm()
+  const user = useUser()
+
+  const descriptionInputRef = useRef<TextInput>(null)
+  const licensePlateInputRef = useRef<TextInput>(null)
 
   function handleDepartureRegister() {
-    if (!licensePlateValidade(licensePlate)) {
-      return Alert.alert(
-        'Placa inválida',
-        'A placa é inválida. Por favor, informe a placa correta do veículo'
+    try {
+      if (!licensePlateValidade(licensePlate)) {
+        licensePlateInputRef.current?.focus()
+
+        return Alert.alert(
+          'Placa inválida',
+          'A placa é inválida. Por favor, informe a placa correta do veículo'
+        )
+      }
+
+      if (description.trim().length === 0) {
+        descriptionInputRef.current?.focus()
+
+        return Alert.alert(
+          'Finalidade',
+          'Por favor, informe a finalidade da utilização do veículo.'
+        )
+      }
+
+      setIsRegistering(true)
+
+      realm.write(() => {
+        realm.create(
+          'Historic',
+          Historic.generate({
+            user_id: user!.id,
+            license_plate: licensePlate.toUpperCase(),
+            description,
+          })
+        )
+      })
+
+      Alert.alert(
+        'Saída do veículo cadastrado com sucesso',
+        'A saída do seu seu veículo foi cadastrado com sucesso.'
       )
+      goBack()
+    } catch (error) {
+      console.log(error)
+
+      Alert.alert('Erro', 'Não foi possível registrar a saída do veículo.')
+    } finally {
+      setIsRegistering(false)
     }
   }
 
@@ -44,8 +91,8 @@ export function Departure() {
         <ScrollView>
           <Content>
             <LicensePlateInput
-              ref={licensePlateInput}
-              onSubmitEditing={() => descriptionInput.current?.focus()}
+              ref={licensePlateInputRef}
+              onSubmitEditing={() => descriptionInputRef.current?.focus()}
               returnKeyType='next'
               label='Placa do veículo'
               placeholder='BRA1234'
@@ -53,7 +100,7 @@ export function Departure() {
             />
 
             <TextAreaInput
-              ref={descriptionInput}
+              ref={descriptionInputRef}
               label='Finalidade'
               placeholder='Vou utilizar o veículo para ...'
               returnKeyType='send'
@@ -62,7 +109,11 @@ export function Departure() {
               onChangeText={setDescription}
             />
 
-            <Button title='Registrar saída' onPress={handleDepartureRegister} />
+            <Button
+              title='Registrar saída'
+              onPress={handleDepartureRegister}
+              isLoading={isRegistering}
+            />
           </Content>
         </ScrollView>
       </KeyboardAvoidingView>
