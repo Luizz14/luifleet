@@ -15,8 +15,10 @@ import {
   TextInput,
 } from 'react-native'
 import { licensePlateValidade } from '../../utils/licensePlateValidate'
-import { useRealm, useUser } from '@realm/react'
+
 import { useNavigation } from '@react-navigation/native'
+import { useRealm } from '../../libs/realm'
+import { useUser } from '@realm/react'
 
 const KeyboardAvoidingViewBehavior =
   Platform.OS === 'android' ? 'height' : 'position'

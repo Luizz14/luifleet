@@ -12,12 +12,14 @@ export const Label = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY_300};
   font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+  font-weight: 500;
 `
 
 export const Input = styled.TextInput`
   color: ${({ theme }) => theme.COLORS.GRAY_200};
   font-size: ${({ theme }) => theme.FONT_SIZE.XXXL}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-weight: 700;
 
   text-align: center;
   margin-top: 16px;

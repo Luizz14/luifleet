@@ -27,14 +27,14 @@ export const Message = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY_100};
   font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+  font-weight: 500;
 
   flex: 1;
-  text-align: justify;
-  textalignvertical: center;
 `
 
 export const TextHighlight = styled.Text`
   color: ${({ theme }) => theme.COLORS.BRAND_LIGHT};
   font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-weight: 700;
 `

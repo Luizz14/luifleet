@@ -1,7 +1,8 @@
-import { useTheme } from 'styled-components'
-import { Container, Input, Label } from './styles'
-import { TextInput, TextInputProps } from 'react-native'
 import { forwardRef } from 'react'
+import { useTheme } from 'styled-components'
+import { TextInput, TextInputProps } from 'react-native'
+
+import { Container, Input, Label } from './styles'
 
 type LicensePlateInputProps = TextInputProps & {
   label: string

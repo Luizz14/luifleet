@@ -25,6 +25,7 @@ export const Name = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY_100};
   font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-weight: 700;
 `
 
 export const Picture = styled(Image)`
