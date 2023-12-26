@@ -11,10 +11,10 @@ export class Historic extends Realm.Object<Historic> {
   _id!: string
   user_id!: string
   license_plate!: string
-  descriptiom!: string
+  description!: string
   status!: string
-  created_at!: string
-  updated_at!: string
+  created_at!: Date
+  updated_at!: Date
 
   static generate({ description, license_plate, user_id }: GenerateProps) {
     return {

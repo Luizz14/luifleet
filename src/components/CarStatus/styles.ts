@@ -2,8 +2,11 @@ import styled from 'styled-components/native'
 
 export const Container = styled.TouchableOpacity`
   padding: 22px;
+  border: 4px;
+  border-bottom-width: 8px;
+  border-color: ${({ theme }) => theme.COLORS.GRAY_600};
 
-  border-radius: 6px;
+  border-radius: 16px;
 
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
 
@@ -15,6 +18,7 @@ export const IconBox = styled.View`
   width: 77px;
   height: 77px;
 
+  border-radius: 12px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_600};
 
   margin-right: 12px;
