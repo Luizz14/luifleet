@@ -16,7 +16,7 @@ export const Container = styled.TouchableOpacity`
 
   background-color: ${({ theme }) => theme.COLORS.GRAY_600};
 
-  :focus {
+  /* :focus {
     border: 0px;
-  }
+  } */
 `

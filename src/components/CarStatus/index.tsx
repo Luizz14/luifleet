@@ -18,9 +18,9 @@ export function CarStatus({ licensePlate = null, ...rest }: CarStatusProps) {
   const status = licensePlate ? 'chegada' : 'saída'
 
   return (
-    <Container {...rest}>
+    <Container activeOpacity={0.7} {...rest}>
       <IconBox>
-        <Icon size={32} color={theme.COLORS.BRAND_LIGHT} />
+        <Icon size={48} color={theme.COLORS.BRAND_LIGHT} />
       </IconBox>
 
       <Message>
