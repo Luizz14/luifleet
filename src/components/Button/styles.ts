@@ -11,9 +11,9 @@ export const Container = styled.TouchableOpacity`
 
   border: 3px;
   border-bottom-width: 6px;
-  border-color: ${({ theme }) => theme.COLORS.BRAND_LIGHT};
+  border-color: ${({ theme }) => theme.COLORS.BRAND_MID};
 
-  background-color: ${({ theme }) => theme.COLORS.BRAND_MID};
+  background-color: ${({ theme }) => theme.COLORS.BRAND_LIGHT};
 `
 
 export const Title = styled.Text`

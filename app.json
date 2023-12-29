@@ -14,7 +14,12 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.luiz.luifleet"
+      "bundleIdentifier": "com.luiz.luifleet",
+      "infoPlist": {
+        "UIBackgroundModes": ["location", "fetch"],
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Allows App to use location services in the foreground and background.",
+        "NSFaceIDUsageDescription": "Allows App to use Face ID for a simpler sign in."
+      }
     },
     "android": {
       "adaptiveIcon": {
