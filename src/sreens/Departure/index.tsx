@@ -20,7 +20,7 @@ import { Container, Content, Message } from './styles'
 
 import { licensePlateValidade } from '../../utils/licensePlateValidate'
 
-import { useNavigation } from '@react-navigation/native'
+import { CurrentRenderContext, useNavigation } from '@react-navigation/native'
 import { useRealm } from '../../libs/realm'
 import { getAddressLocation } from '../../utils/getAddressLocation'
 import { Loading } from '../../components/Loading'
@@ -64,6 +64,13 @@ export function Departure() {
         return Alert.alert(
           'Finalidade',
           'Por favor, informe a finalidade da utilização do veículo.'
+        )
+      }
+
+      if (!currentCordinates?.latitude || !currentCordinates?.longitude) {
+        return Alert.alert(
+          'Localização',
+          'Não foi possível obter a localização atual. Por favor, tente novamente.'
         )
       }
 
@@ -123,7 +130,7 @@ export function Departure() {
 
     return () => {
       if (subscription) {
-        subscription?.remove()
+        subscription.remove()
       }
     }
   }, [locationForegroundPermission])
