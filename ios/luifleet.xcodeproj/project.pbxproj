@@ -83,6 +83,13 @@
 			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
 			remoteInfo = AirMaps;
 		};
+		93266A1D2B4065C300EAD8F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93266A112B40552F00EAD8F9 /* AirMaps.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
+			remoteInfo = AirMaps;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -461,6 +468,14 @@
 			path = "../node_modules/react-native-maps/ios";
 			sourceTree = "<group>";
 		};
+		93266A1A2B4065C300EAD8F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93266A1E2B4065C300EAD8F9 /* libAirMaps.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +555,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 93266A1A2B4065C300EAD8F9 /* Products */;
+					ProjectRef = 93266A112B40552F00EAD8F9 /* AirMaps.xcodeproj */;
+				},
+				{
 					ProductGroup = 9303864C2B3F757B00709A38 /* Products */;
 					ProjectRef = 9303864B2B3F757B00709A38 /* AirMaps.xcodeproj */;
 				},
@@ -557,6 +576,13 @@
 			fileType = archive.ar;
 			path = libAirMaps.a;
 			remoteRef = 9303864F2B3F757B00709A38 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93266A1E2B4065C300EAD8F9 /* libAirMaps.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAirMaps.a;
+			remoteRef = 93266A1D2B4065C300EAD8F9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -815,9 +841,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KR8226JKT9;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
-					"HAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1",
-				);
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "HAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1\n\nHAVE_GOOGLE_MAPS=1";
 				INFOPLIST_FILE = luifleet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
