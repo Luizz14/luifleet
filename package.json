@@ -35,7 +35,8 @@
     "react-native-svg": "^14.1.0",
     "react-native-toast-message": "^2.2.0",
     "realm": "^12.4.0",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "expo-task-manager": "~11.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

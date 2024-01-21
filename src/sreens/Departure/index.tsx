@@ -1,32 +1,34 @@
-import { Alert, Platform, ScrollView, TextInput } from 'react-native'
+import { Alert, ScrollView, TextInput } from 'react-native'
 import { useUser } from '@realm/react'
 import { useEffect, useRef, useState } from 'react'
 import {
+  getBackgroundPermissionsAsync,
   LocationAccuracy,
   useForegroundPermissions,
   watchPositionAsync,
   LocationSubscription,
   LocationObjectCoords,
 } from 'expo-location'
+import { useNavigation } from '@react-navigation/native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Historic } from '../../libs/realm/schemas/Historic'
+import { Car } from 'phosphor-react-native'
 
+import { Map } from '../../components/Map'
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
-import { LicensePlateInput } from '../../components/LicensePlateInput'
-import { TextAreaInput } from '../../components/TextAreaInput'
-import { Container, Content, Message } from './styles'
-
-import { licensePlateValidade } from '../../utils/licensePlateValidate'
-
-import { CurrentRenderContext, useNavigation } from '@react-navigation/native'
-import { useRealm } from '../../libs/realm'
-import { getAddressLocation } from '../../utils/getAddressLocation'
 import { Loading } from '../../components/Loading'
 import { LocationInfo } from '../../components/LocationInfo'
-import { Car } from 'phosphor-react-native'
-import { Map } from '../../components/Map'
+import { TextAreaInput } from '../../components/TextAreaInput'
+import { LicensePlateInput } from '../../components/LicensePlateInput'
+
+import { Container, Content, Message } from './styles'
+import { licensePlateValidade } from '../../utils/licensePlateValidate'
+
+import { useRealm } from '../../libs/realm'
+import { getAddressLocation } from '../../utils/getAddressLocation'
+import { startLocationTask } from '../../tasks/backgroundLocationTask'
 
 export function Departure() {
   const [description, setDescription] = useState('')
@@ -47,7 +49,7 @@ export function Departure() {
   const descriptionInputRef = useRef<TextInput>(null)
   const licensePlateInputRef = useRef<TextInput>(null)
 
-  function handleDepartureRegister() {
+  async function handleDepartureRegister() {
     try {
       if (!licensePlateValidade(licensePlate)) {
         licensePlateInputRef.current?.focus()
@@ -76,6 +78,19 @@ export function Departure() {
 
       setIsRegistering(true)
 
+      const backgorundPermission = await getBackgroundPermissionsAsync()
+
+      if (!backgorundPermission.granted) {
+        setIsRegistering(true)
+
+        return Alert.alert(
+          'Permissão',
+          'Você precisa permitir que o aplicativo tenha acesso a localização em segundo plano para utilizar essa funcionalidade. Por favor permita o acesso a localização em segundo plano nas configurações do seu dispositivo.'
+        )
+      }
+
+      await startLocationTask()
+
       realm.write(() => {
         realm.create(
           'Historic',
@@ -83,6 +98,13 @@ export function Departure() {
             user_id: user!.id,
             license_plate: licensePlate.toUpperCase(),
             description,
+            coords: [
+              {
+                latitude: currentCordinates.latitude,
+                longitude: currentCordinates.longitude,
+                timestamp: new Date().getTime(),
+              },
+            ],
           })
         )
       })
