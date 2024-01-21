@@ -1,9 +1,11 @@
 import * as Location from 'expo-location'
 
-export async function getAddressLocation({
-  latitude,
-  longitude,
-}: Location.LocationObjectCoords) {
+type Props = {
+  latitude: number
+  longitude: number
+}
+
+export async function getAddressLocation({ latitude, longitude }: Props) {
   try {
     const location = await Location.reverseGeocodeAsync({ latitude, longitude })
 

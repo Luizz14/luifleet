@@ -17,4 +17,11 @@ export const Message = styled.Text`
   text-align: center;
 
   margin-top: 24px;
+  margin-bottom: 44px;
+`
+
+export const MessageContent = styled.View`
+  flex: 1;
+  justify-content: center;
+  padding: 24px;
 `

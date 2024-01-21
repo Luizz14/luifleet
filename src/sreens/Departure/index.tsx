@@ -23,12 +23,13 @@ import { LocationInfo } from '../../components/LocationInfo'
 import { TextAreaInput } from '../../components/TextAreaInput'
 import { LicensePlateInput } from '../../components/LicensePlateInput'
 
-import { Container, Content, Message } from './styles'
+import { Container, Content, Message, MessageContent } from './styles'
 import { licensePlateValidade } from '../../utils/licensePlateValidate'
 
 import { useRealm } from '../../libs/realm'
 import { getAddressLocation } from '../../utils/getAddressLocation'
 import { startLocationTask } from '../../tasks/backgroundLocationTask'
+import { openSettings } from '../../utils/openSettings'
 
 export function Departure() {
   const [description, setDescription] = useState('')
@@ -85,7 +86,8 @@ export function Departure() {
 
         return Alert.alert(
           'Permissão',
-          'Você precisa permitir que o aplicativo tenha acesso a localização em segundo plano para utilizar essa funcionalidade. Por favor permita o acesso a localização em segundo plano nas configurações do seu dispositivo.'
+          'Você precisa permitir que o aplicativo tenha acesso a localização em segundo plano para utilizar essa funcionalidade. Por favor permita o acesso a localização em segundo plano nas configurações do seu dispositivo.',
+          [{ text: 'Abrir configurações', onPress: openSettings }]
         )
       }
 
@@ -172,11 +174,18 @@ export function Departure() {
       <Container>
         <Header title='Saída' />
 
-        <Message>
-          Você precisa permitir que o aplicativo tenha acesso a localização para
-          utilizar essa funcionalidade. Por favor permita o acesso a localização
-          nas configurações do seu dispositivo.
-        </Message>
+        <MessageContent>
+          <Message>
+            Você precisa permitir que o aplicativo tenha acesso a localização
+            para utilizar essa funcionalidade. Por favor permita o acesso a
+            localização nas configurações do seu dispositivo.
+          </Message>
+
+          <Button
+            title='Permitir acesso a localização'
+            onPress={openSettings}
+          />
+        </MessageContent>
       </Container>
     )
   }
