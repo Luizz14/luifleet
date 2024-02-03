@@ -39,6 +39,7 @@ export function SignIn() {
       setIsAuthenticating(false)
     }
   }
+
   return (
     <Container source={backgroundImg}>
       <Title>Lui Fleet</Title>

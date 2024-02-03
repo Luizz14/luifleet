@@ -25,7 +25,7 @@ export function Locations({ arrival = null, departure }: LocationsProps) {
             description={arrival.description}
           />
         </>
-      )}{' '}
+      )}
     </Container>
   )
 }

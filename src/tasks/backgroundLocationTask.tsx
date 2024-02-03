@@ -61,6 +61,8 @@ export async function stopLocationTask() {
       await stopGeofencingAsync(BACKGROUND_TASK_NAME)
       await removeStorageLocations()
     }
+
+    console.log('cancelou a task')
   } catch (error) {
     console.log(error)
   }

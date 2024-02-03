@@ -101,16 +101,27 @@ export function Arrival() {
   async function getLocationsInfo() {
     if (!historic) return
 
+    setIsLoading(true)
+
     const lastSync = await getLastAsyncTimestamp()
     const updatedAt = historic!.updated_at.getTime()
 
     setDataNotSynced(updatedAt > lastSync)
 
+    console.log(historic?.status)
     if (historic?.status === 'departure') {
       const locationsStorage = await getStorageLocation()
       setCordinates(locationsStorage)
     } else {
-      setCordinates(historic?.coords ?? [])
+      const coords: LatLng[] =
+        historic?.coords.map((item) => {
+          return {
+            latitude: item.latitude,
+            longitude: item.longitude,
+          }
+        }) ?? []
+      setCordinates(coords)
+      console.log(historic?.coords)
     }
 
     if (historic?.coords[0]) {
