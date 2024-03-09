@@ -46,6 +46,7 @@
 		7A4D352CD337FB3A3BF06240 /* Pods-luifleet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-luifleet.release.xcconfig"; path = "Target Support Files/Pods-luifleet/Pods-luifleet.release.xcconfig"; sourceTree = "<group>"; };
 		9303864B2B3F757B00709A38 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		93266A112B40552F00EAD8F9 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
+		93691F6F2B77FB3700731120 /* luifleetRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = luifleetRelease.entitlements; path = luifleet/luifleetRelease.entitlements; sourceTree = "<group>"; };
 		9388DB762B3F78BE0014D59D /* react-native-google-maps.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "react-native-google-maps.podspec"; path = "../node_modules/react-native-maps/react-native-google-maps.podspec"; sourceTree = "<group>"; };
 		9388DB782B3F78EA0014D59D /* AIRGoogleMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AIRGoogleMap.h; path = "../node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMap.h"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = luifleet/SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 		13B07FAE1A68108700A75B9A /* luifleet */ = {
 			isa = PBXGroup;
 			children = (
+				93691F6F2B77FB3700731120 /* luifleetRelease.entitlements */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -463,7 +465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = luifleet/luifleet.entitlements;
+				CODE_SIGN_ENTITLEMENTS = luifleet/luifleetRelease.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KR8226JKT9;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;

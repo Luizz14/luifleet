@@ -53,6 +53,11 @@ module.exports = {
     web: {
       favicon: './assets/favicon.png',
     },
+    extra: {
+      eas: {
+        projectId: 'a1003094-400b-4024-ace1-d03e811d8061',
+      },
+    },
     plugins: [
       [
         'expo-location',

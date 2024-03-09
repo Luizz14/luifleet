@@ -35,6 +35,7 @@ export function SignIn() {
         throw new Error()
       }
     } catch (error) {
+      console.log(error)
       Alert.alert('Error!', 'Não foi possível entrar na sua conta google')
       setIsAuthenticating(false)
     }
